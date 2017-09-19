@@ -34,12 +34,7 @@ a {
   left: 50%;
   margin-left: -175px;
 }
-label{
-background: transparent;
- outline: none;
- border: 0;
-  border-bottom: 1px solid #435160;
- }
+
 
 input[type="text"], input[type="password"], input[type="email"] {
   width: 350px;
@@ -86,7 +81,6 @@ label {
   content: "";
   transition: all 0.3s ease-in-out;
   cursor: pointer;
-  border: 3px solid #435160;
 }
 
 
@@ -164,7 +158,6 @@ input[type="submit"]:hover {
 	<input ng-model='user.phonenumber' placeholder='Phone' type='text'>
 	<label>Role</label>  
 	<select ng-model='user.role' placeholder='Role'>
-	<option value="" disabled selected>Select Role</option>
   <option  value="STUDENT">Student</option>
   <option  value="ALUMINI">Alumini</option>
   <option  value="EMPLOYEE">Employee</option>
