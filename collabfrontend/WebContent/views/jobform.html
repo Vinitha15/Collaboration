@@ -1,9 +1,44 @@
-<form>
-<input ng-model='job.jobtitle' placeholder='Username' type='text'><br><br>
-<input ng-model='job.jobdescription' placeholder='Username' type='text'><br><br>
-<input ng-model='job.skillsrequired' placeholder='Username' type='text'><br><br>
-<input ng-model='job.location' placeholder='Username' type='text'><br><br>
-<input ng-model='job.salary' placeholder='Username' type='text'><br><br>
-<input ng-model='job.companyname' placeholder='Username' type='text'><br><br>
-<input ng-model='job.yearsofexp' placeholder='Username' type='text'><br><br>
-</form>
+<style>
+form{
+margin-top:70px;
+}
+</style>
+<div class="container">
+			<form>
+			<div class="form-group">
+				<label>Enter Job Title:</label>
+				<input ng-model='job.jobtitle' placeholder='Title' type='text'>
+			</div>
+			<div class="form-group">
+				<label>Enter Job Description:</label>
+				<input ng-model='job.jobdescription' placeholder='Description' type="textarea">
+			</div>
+			<div class="form-group">
+				<label>Skills Required:</label>
+				<input ng-model='job.skillsrequired' placeholder='Skills' type='text'>
+			</div>
+			<div class="form-group">
+				<label>Enter Location</label>
+				<input ng-model='job.location' placeholder='Location' type='text'>
+			</div>
+			<div class="form-group">
+				<label>Enter salary</label>
+				<input ng-model='job.salary' placeholder='Salary' type='text'>
+
+			</div>
+			<div class="form-group">
+				<label>Enter Company Name</label>
+				<input ng-model='job.companyname' placeholder='Company Name' type='text'>
+
+			</div>
+			<div class="form-group">
+				<label>Enter Years of Experience</label>
+				<input ng-model='job.yearsofexp' placeholder='Years of Experience' type='text'>
+
+			</div>
+			
+			<button type="submit" class="btn btn-success center-block" ng-click="savejob()">Submit</button>
+		</form>
+	</div>
+
+

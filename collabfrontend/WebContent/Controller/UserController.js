@@ -3,10 +3,14 @@
  */
 app.controller('UserController',function($scope,$location,UserService,$rootScope,$cookieStore){
 	console.log("user Controller loading.......")
-	if($rootScope.currentuser!=undefined){
-		
-		$scope.user=$cookieStore.get('currentuser');
 	
+	if($rootScope.currentuser!=undefined){
+		UserService.getUser().then(function(response){
+			$scope.user=response.data
+		},function(response){
+			if(response.status==401)
+				$location.path('/login')
+		})	
 	}
 	
 	$scope.registerUser=function(){

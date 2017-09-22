@@ -1,0 +1,30 @@
+<style>
+input[type="text"]{
+margin-top:75px;
+}
+</style>
+<div class="container">
+Search <input type="text" ng-model="searchTxt">
+<table class="table table-stripped">
+<thead>
+<tr><th>jobtitle</th>
+<th>PostedOn</th></tr>
+</thead>
+<tbody>
+<tr ng-repeat="job in jobs | filter:searchTxt" >
+<td><a href="" ng-click="getjobbyid(job.jobId)">{{job.jobtitle}}</a></td>
+<td>{{job.postedOn | date:'yyyy:MM:dd'}}</td>
+</tr>
+</tbody>
+</table>
+<div ng-show="showjobdetails">
+JOB Title:			{{job.jobtitle}}<br/>
+JOB Description:	{{job.jobdescription}}<br/>
+Years Of Experience:{{job.yearsofexp}}<br/>
+Company Name:		{{job.companyname}}<br/>
+Skills Required:	{{job.skillsrequired}}<br/>
+Location:			{{job.location}}<br/>
+Posted On:			{{job.postedOn}}<br/>
+Salary:				{{job.salary}}
+</div>
+</div>

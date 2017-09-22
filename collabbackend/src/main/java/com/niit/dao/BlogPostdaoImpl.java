@@ -10,31 +10,25 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.niit.model.Job;
-
+import com.niit.model.BlogPost;
 @Repository
 @Transactional
-public class JobdaoImpl implements Jobdao {
+public class BlogPostdaoImpl implements BlogPostdao {
+	
 	@Autowired
 	private SessionFactory sessionFactory;
-
-	public void saveJob(Job job) {
+	
+	public void saveblogpost(BlogPost blogpost) {
 		Session session=sessionFactory.getCurrentSession();
-		session.save(job);
-
+		session.save(blogpost);
+		
 	}
 
-	public List<Job> getalljobs() {
+	public List<BlogPost> getallblogposts(int approved) {
 		Session session=sessionFactory.getCurrentSession();
-		Query query=session.createQuery("from Job");
-		List<Job> jobs=query.list();
-		return jobs;
-	}
-
-	public Job getjobbyid(int id) {
-		Session session=sessionFactory.getCurrentSession();
-		Job job=(Job) session.get(Job.class, id);
-		return job;
+		Query query=session.createQuery("from BlogPost where approved="+approved);
+		List<BlogPost> blogposts=query.list();
+		return blogposts;
 	}
 
 }

@@ -1,0 +1,36 @@
+<style>
+h5{
+margin-top:75px;
+}
+</style>
+<div class="container">
+<div ng-show="currentuser.role=='ADMIN'">
+<h5>List of blogs waiting for approval</h5><br/>
+<table class="table table-stripped">
+<thead>
+<tr><th>Blogtitle</th>
+<th>PostedOn</th></tr>
+</thead>
+<tbody>
+<tr ng-repeat="blogpost in blogpostswaiting" >
+<td><a href="" ng-click="">{{blogpost.blogtitle}}</a></td>
+<td>{{blogpost.postedOn | date:'yyyy:MM:dd'}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h5>List of blogs</h5><br/>
+<table class="table table-stripped">
+<thead>
+<tr><th>Blogtitle</th>
+<th>PostedOn</th></tr>
+</thead>
+<tbody>
+<tr ng-repeat="blogpost in blogpostsapproved" >
+<td><a href="" ng-click="">{{blogpost.blogtitle}}</a></td>
+<td>{{blogpost.postedOn | date:'yyyy:MM:dd'}}</td>
+</tr>
+</tbody>
+</table>
+
+</div>
