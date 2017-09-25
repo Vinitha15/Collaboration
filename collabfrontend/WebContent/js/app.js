@@ -35,6 +35,14 @@ app.config(function($routeProvider) {
         templateUrl : 'views/blogpostlist.html',
         controller:'BlogPostController'
     })
+    .when("/blogpostforapproval/:id", {
+        templateUrl : 'views/blogpostforapproval.html',
+        controller:'BlogPostDetailController'
+    })
+    .when("/blogpostdetail/:id", {
+        templateUrl : 'views/blogpostdetail.html',
+        controller:'BlogPostDetailController'
+    })
     .otherwise({
 		templateUrl:'views/home.html'
 	})

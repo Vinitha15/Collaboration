@@ -13,7 +13,7 @@ margin-top:75px;
 </thead>
 <tbody>
 <tr ng-repeat="blogpost in blogpostswaiting" >
-<td><a href="" ng-click="">{{blogpost.blogtitle}}</a></td>
+<td><a href="#!blogpostforapproval/{{blogpost.blogpostId}}">{{blogpost.blogtitle}}</a></td>
 <td>{{blogpost.postedOn | date:'yyyy:MM:dd'}}</td>
 </tr>
 </tbody>
@@ -27,7 +27,7 @@ margin-top:75px;
 </thead>
 <tbody>
 <tr ng-repeat="blogpost in blogpostsapproved" >
-<td><a href="" ng-click="">{{blogpost.blogtitle}}</a></td>
+<td><a href="#!blogpostdetail/{{blogpost.blogpostId}}">{{blogpost.blogtitle}}</a></td>
 <td>{{blogpost.postedOn | date:'yyyy:MM:dd'}}</td>
 </tr>
 </tbody>
