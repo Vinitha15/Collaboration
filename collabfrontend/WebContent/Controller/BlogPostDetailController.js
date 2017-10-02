@@ -3,7 +3,7 @@
  */
 app.controller('BlogPostDetailController',function($scope,$location,BlogPostService,$routeParams){
 	var id=$routeParams.id
-	
+	var showRejectiontext=false
 	BlogPostService.getblogpostbyid(id).then(function(response){
 		console.log(response.data)
 		$scope.blogpost=response.data
@@ -25,4 +25,7 @@ app.controller('BlogPostDetailController',function($scope,$location,BlogPostServ
 		})
 	}
 	
+	$scope.setRejectiontext=function(val){
+		$scope.showRejectiontext=val
+	}
 })

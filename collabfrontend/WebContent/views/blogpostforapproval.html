@@ -25,8 +25,12 @@ margin-top:75px;
 </div>
 <form>
 Accept/Reject<br>
-<input type="radio" ng-model="blogpost.approved" value="true">Approve<br>
-<input type="radio" ng-model="blogpost.approved" value="false">Reject<br>
+<input type="radio" ng-model="blogpost.approved" value="true" ng-click="setRejectiontext(false)">Approve<br>
+<input type="radio" ng-model="blogpost.approved" value="false" ng-click="setRejectiontext(true)">Reject<br>
+<p ng-show="showRejectiontext">
+Enter Reason for rejection
+<textarea rows="3" cols="10" ng-model="blogpost.rejectionReason"></textarea>
+</p>
 <input type="submit" ng-click="updateApproval()" value="submit">
 </form>
 

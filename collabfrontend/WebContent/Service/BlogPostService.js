@@ -27,5 +27,9 @@ app.factory('BlogPostService',function($http){
 			return	$http.put(BASE_URL + "/updateBlogpost",blogpost)
 			}
 
+		blogPostService.getApprovalstatus=function(){
+			return	$http.get(BASE_URL + "/getBlogpostapproved")
+			}
+
 	return blogPostService;
 })

@@ -74,6 +74,19 @@ border: none;
   background-image: -o-linear-gradient(left, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
   background-image: linear-gradient(to right, #c4e17f, #c4e17f 12.5%, #f7fdca 12.5%, #f7fdca 25%, #fecf71 25%, #fecf71 37.5%, #f0776c 37.5%, #f0776c 50%, #db9dbe 50%, #db9dbe 62.5%, #c49cde 62.5%, #c49cde 75%, #669ae1 75%, #669ae1 87.5%, #62c2e4 87.5%, #62c2e4);
 }
+.rw-number-notification {
+    position: absolute;
+    top: -7px;
+    right: -6px;
+    padding: 3px 3px 2px 3px;
+    background-color: red;
+    color: white;
+    font-family: arial;
+    font-weight: bold;
+    font-size: 10px;
+    border-radius: 4px;
+    box-shadow: 1px 1px 1px silver;
+}
 </style>
 </head>
 <body ng-app="myApp">
@@ -103,12 +116,6 @@ border: none;
                             </ul>
                         </li> -->
                         <li><a href="#!editprofile" ng-show="currentuser.username" >edit profile</a></li>
-                        <!-- <li class=" dropdown"><a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Managers <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">View Managers</a></li>
-                                <li><a href="#">Add New</a></li>
-                            </ul>
-                        </li>-->
                         <li class=" dropdown"><a href="" ng-show="currentuser.username" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#!saveblogpost" ng-show="currentuser.username"> Add Blog</a></li>
@@ -123,13 +130,22 @@ border: none;
                         </li> 
                     </ul>
                     <ul class="nav navbar-nav pull-right">
+                    	<li class=" dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-show="currentuser.username"> <span class="glyphicon glyphicon-globe"><span class="rw-number-notification" ng-if="approvalstatus.length>0">{{approvalstatus.length}} </span> </span></a>
+                            <ul class="dropdown-menu">
+                                <li ng-repeat="status in approvalstatus">
+                                <a href="#!approvalstatus/{{status.blogpostId}}">BLogpost {{status.blogtitle}}
+                                <span ng-if="status.approved">Approved</span>
+                                <span ng-if="!status.approved">Rejected</span></a></li>
+                            </ul>
+                        </li>
                         <li class=" dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"  ng-show="currentuser.username">Signed in as  {{currentuser.username}}<span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href="#">My Profile</a></li>
-                                <li><a href="" ng-click="logout()" ng-show="currentuser.username">logout</a></li>
+                                <li><a href="" ng-click="logout()">logout</a></li>
                             </ul>
                         </li>
-                        <li><a href="#!register" ng-hide="currentuser.username">Signup</a></li>
+                        <li><a href="#!uploadprofilepic" ng-show="currentuser.username"><img src="http://localhost:8086/collabbackend/getProfilepic/{{currentuser.username}}" alt="upload Picture" height="30px" width="30px" class="img-circle"></a></li>
+						<li><a href="#!register" ng-hide="currentuser.username">Signup</a></li>
 						<li><a href="#!login" ng-hide="currentuser.username">login</a></li>
                     </ul>
                 </div>
@@ -147,6 +163,8 @@ border: none;
 <script type="text/javascript" src="js/angular-route.js"></script>
 <script type="text/javascript" src="js/angular-cookies.js"></script> 
 <script type="text/javascript" src="js/app.js"></script>
+
+<script type="text/javascript" src="Controller/HomeController.js"></script>
 
 <script type="text/javascript" src="Controller/UserController.js"></script>
 <script type="text/javascript" src="Service/UserService.js"></script>

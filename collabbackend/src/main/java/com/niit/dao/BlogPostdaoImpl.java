@@ -26,7 +26,11 @@ public class BlogPostdaoImpl implements BlogPostdao {
 
 	public List<BlogPost> getallblogposts(int approved) {
 		Session session=sessionFactory.getCurrentSession();
-		Query query=session.createQuery("from BlogPost where approved="+approved);
+		Query query=null;
+		if(approved==1)
+			query=session.createQuery("from BlogPost where approved="+approved);
+		else
+			query=session.createQuery("from BlogPost where approved=0 and rejectionReason=null");
 		List<BlogPost> blogposts=query.list();
 		return blogposts;
 	}
@@ -40,6 +44,19 @@ public class BlogPostdaoImpl implements BlogPostdao {
 		Session session=sessionFactory.getCurrentSession();
 		session.update(blogpost);
 		
+	}
+
+	public List<BlogPost> getapprovedblogposts(String username) {
+		Session session=sessionFactory.getCurrentSession();
+		Query query=session.createQuery("from BlogPost where postedby.username=? and viewedStatus=? and (approved=1 or rejectionReason!=null)");
+		query.setString(0, username);
+		query.setBoolean(1, false);
+		List<BlogPost> blogposts=query.list();
+		for(BlogPost bp:blogposts)
+		{	
+			bp.setViewedStatus(true);
+			session.update(bp);}
+		return blogposts;
 	}
 
 }

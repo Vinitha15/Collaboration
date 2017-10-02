@@ -76,9 +76,9 @@ public class BlogPostController {
 			Error error=new Error(5,"Unauthorized access");
 			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
 		}
-		String username=(String) session.getAttribute("username");
-		User user=userdao.getUserbyUsername(username);
 		try{
+			if(!blogpost.isApproved() && blogpost.getRejectionReason()==null)
+				blogpost.setRejectionReason("Not mentioned");
 			blogpostdao.updateblogpost(blogpost);
 			return new ResponseEntity<BlogPost>(blogpost,HttpStatus.OK);
 		}
@@ -86,6 +86,18 @@ public class BlogPostController {
 			Error error=new Error(7,"Unable to enter blog details");
 			return new ResponseEntity<Error>(error,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	@RequestMapping(value="/getBlogpostapproved" , method=RequestMethod.GET)
+	public ResponseEntity<?> getblogpostapproved(){
+		/*if( session.getAttribute("username")==null){
+			Error error=new Error(5,"Unauthorized access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		String username=(String) session.getAttribute("username");
+		*/
+		String username="vini";
+		List<BlogPost> blogposts=blogpostdao.getapprovedblogposts(username);
+		return new ResponseEntity<List<BlogPost>>(blogposts,HttpStatus.OK);
 	}
 	
 }

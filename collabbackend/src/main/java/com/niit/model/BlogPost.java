@@ -23,6 +23,21 @@ public class BlogPost {
 	@ManyToOne
 	private User postedby;
 	private boolean approved;
+	private String rejectionReason;
+	private boolean viewedStatus;
+	
+	public String getRejectionReason() {
+		return rejectionReason;
+	}
+	public void setRejectionReason(String rejectionReason) {
+		this.rejectionReason = rejectionReason;
+	}
+	public boolean isViewedStatus() {
+		return viewedStatus;
+	}
+	public void setViewedStatus(boolean viewedStatus) {
+		this.viewedStatus = viewedStatus;
+	}
 	public int getBlogpostId() {
 		return blogpostId;
 	}

@@ -1,0 +1,10 @@
+<style>
+.row{
+margin-top:75px;
+}
+</style>
+<div class="row">
+Blogpost "{{blogpost.blogtitle}}"
+<span ng-if="blogpost.approved">Approved</span>
+<span ng-if="!blogpost.approved">Rejected for the reason {{blogpost.rejectionReason}}</span>
+</div>

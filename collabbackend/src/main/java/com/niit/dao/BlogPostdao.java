@@ -11,4 +11,5 @@ public interface BlogPostdao {
 	List<BlogPost> getallblogposts(int approved);
 	BlogPost getblogpostbyid(int id);
 	void updateblogpost(BlogPost blogpost);
+	List<BlogPost> getapprovedblogposts(String username);
 }

@@ -20,13 +20,14 @@ margin-top:75px;
 </table>
 </div>
 <h5>List of blogs</h5><br/>
+Search <input type="text" ng-model="searchByTitle">
 <table class="table table-stripped">
 <thead>
 <tr><th>Blogtitle</th>
 <th>PostedOn</th></tr>
 </thead>
 <tbody>
-<tr ng-repeat="blogpost in blogpostsapproved" >
+<tr ng-repeat="blogpost in blogpostsapproved | filter: searchByTitle" >
 <td><a href="#!blogpostdetail/{{blogpost.blogpostId}}">{{blogpost.blogtitle}}</a></td>
 <td>{{blogpost.postedOn | date:'yyyy:MM:dd'}}</td>
 </tr>

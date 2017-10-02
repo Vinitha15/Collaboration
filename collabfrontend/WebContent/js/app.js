@@ -5,7 +5,8 @@ var app = angular.module("myApp", ["ngRoute", "ngCookies"]);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/home", {
-        templateUrl : 'views/home.html'
+        templateUrl : 'views/home.html',
+        controller:'HomeController'
     })
     .when("/register", {
         templateUrl : 'views/register.html',
@@ -42,6 +43,13 @@ app.config(function($routeProvider) {
     .when("/blogpostdetail/:id", {
         templateUrl : 'views/blogpostdetail.html',
         controller:'BlogPostDetailController'
+    })
+    .when("/approvalstatus/:id", {
+        templateUrl : 'views/blogpoststatus.html',
+        controller:'BlogPostDetailController'
+    })
+    .when("/uploadprofilepic", {
+        templateUrl : 'views/uploadprofilepic.html'
     })
     .otherwise({
 		templateUrl:'views/home.html'
