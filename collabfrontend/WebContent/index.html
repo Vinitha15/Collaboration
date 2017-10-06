@@ -106,15 +106,7 @@ border: none;
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="#!home">Home</a></li>
-                       <!--  <li class=" dropdown">
-                            <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Departments <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li class=" dropdown">
-                                    <a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">View Departments</a>
-                                </li>
-                                <li><a href="#">Add New</a></li>
-                            </ul>
-                        </li> -->
+                       
                         <li><a href="#!editprofile" ng-show="currentuser.username" >edit profile</a></li>
                         <li class=" dropdown"><a href="" ng-show="currentuser.username" class="dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog <span class="caret"></span></a>
                             <ul class="dropdown-menu">
@@ -126,6 +118,14 @@ border: none;
                             <ul class="dropdown-menu">
                                <li><a href="#!savejob" ng-show="currentuser.role=='ADMIN'" >Add Job</a></li>
                                 <li><a href="#!getalljobs" ng-show="currentuser.username" >View Job</a></li>
+                            </ul>
+                        </li> 
+                        <li class=" dropdown">
+                            <a href=" " class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-show="currentuser.username"> Friend <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#!suggestedusers">Suggested users</a></li>
+                                <li><a href="#!pendingrequests">Pending Requests</a></li>
+								<li><a href="#!getfriends">Friends({{noOfFriends}})</a></li>
                             </ul>
                         </li> 
                     </ul>
@@ -144,7 +144,7 @@ border: none;
                                 <li><a href="" ng-click="logout()">logout</a></li>
                             </ul>
                         </li>
-                        <li><a href="#!uploadprofilepic" ng-show="currentuser.username"><img src="http://localhost:8086/collabbackend/getProfilepic/{{currentuser.username}}" alt="upload Picture" height="30px" width="30px" class="img-circle"></a></li>
+                        <li><a href="#!uploadprofilepic" ng-show="currentuser.username"><img src="http://localhost:8086/collabbackend/getProfilepic/{{currentuser.username}}" alt="upload Picture" height="25px" width="30px" class="img-circle"></a></li>
 						<li><a href="#!register" ng-hide="currentuser.username">Signup</a></li>
 						<li><a href="#!login" ng-hide="currentuser.username">login</a></li>
                     </ul>
@@ -176,6 +176,9 @@ border: none;
 <script type="text/javascript" src="Service/BlogPostService.js"></script>
 
 <script type="text/javascript" src="Controller/BlogPostDetailController.js"></script>
+
+<script type="text/javascript" src="Controller/FriendController.js"></script>
+<script type="text/javascript" src="Service/FriendService.js"></script>
 
 
 </html>

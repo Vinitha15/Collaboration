@@ -1,37 +1,78 @@
+
+<link rel="stylesheet"
+	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" />
 <style>
-h5{
-margin-top:75px;
+.row {
+	margin-top: 75px;
+}
+
+.btn-blog {
+	color: #ffffff;
+	background-color: #37d980;
+	border-color: #37d980;
+	border-radius: 0;
+	margin-bottom: 10px
+}
+
+.btn-blog:hover, .btn-blog:focus, .btn-blog:active, .btn-blog.active {
+	color: white;
+	background-color: #34ca78;
+	border-color: #34ca78;
 }
 </style>
-<div class="container">
-<div ng-show="currentuser.role=='ADMIN'">
-<h5>List of blogs waiting for approval</h5><br/>
-<table class="table table-stripped">
-<thead>
-<tr><th>Blogtitle</th>
-<th>PostedOn</th></tr>
-</thead>
-<tbody>
-<tr ng-repeat="blogpost in blogpostswaiting" >
-<td><a href="#!blogpostforapproval/{{blogpost.blogpostId}}">{{blogpost.blogtitle}}</a></td>
-<td>{{blogpost.postedOn | date:'yyyy:MM:dd'}}</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h5>List of blogs</h5><br/>
-Search <input type="text" ng-model="searchByTitle">
-<table class="table table-stripped">
-<thead>
-<tr><th>Blogtitle</th>
-<th>PostedOn</th></tr>
-</thead>
-<tbody>
-<tr ng-repeat="blogpost in blogpostsapproved | filter: searchByTitle" >
-<td><a href="#!blogpostdetail/{{blogpost.blogpostId}}">{{blogpost.blogtitle}}</a></td>
-<td>{{blogpost.postedOn | date:'yyyy:MM:dd'}}</td>
-</tr>
-</tbody>
-</table>
+<div class="row">
+	<div class="container" ng-show="currentuser.role=='ADMIN'">
+	<h4 class="media-heading" ng-show="currentuser.role=='ADMIN'">List of blogs for waiting</h4>
+		<div class="well"
+			ng-repeat="blogpost in blogpostswaiting">
+			<div class="media">
+				<a class="pull-left" href=""> <img class="media-object"
+					src="http://placekitten.com/150/150">
+				</a>
+				<div class="media-body">
+					<h4 class="media-heading">{{blogpost.blogtitle}}</h4>
+					<p class="text-right">By {{blogpost.postedby.username}}</p>
+					<p>{{blogpost.blogdescription}}</p>
+					<ul class="list-inline list-unstyled">
+						<li><span><i class="glyphicon glyphicon-calendar"></i>
+								{{blogpost.postedOn | date:'yyyy:MM:dd'}} </span></li>
+						<li>|</li>
+						<span><i class="glyphicon glyphicon-comment"></i> 2
+							comments</span>
+						<li>|</li>
+						<a class="btn btn-blog pull-right marginBottom10" href="#!blogpostforapproval/{{blogpost.blogpostId}}">READ MORE</a>
 
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+	<h4 class="media-heading" ng-show="currentuser.role=='ADMIN'">List of blogs Approved</h4>
+		<div class="well"
+			ng-repeat="blogpost in blogpostsapproved">
+			<div class="media">
+				<a class="pull-left" href=""> <img class="media-object"
+					src="http://placekitten.com/150/150">
+				</a>
+				<div class="media-body">
+					<h4 class="media-heading">{{blogpost.blogtitle}}</h4>
+					<p class="text-right">By {{blogpost.postedby.username}}</p>
+					<p>{{blogpost.blogdescription}}</p>
+					<ul class="list-inline list-unstyled">
+						<li><span><i class="glyphicon glyphicon-calendar"></i>
+								{{blogpost.postedOn | date:'yyyy:MM:dd'}} </span></li>
+						<li>|</li>
+						<span><i class="glyphicon glyphicon-comment"></i> 2
+							comments</span>
+						<li>|</li>
+						<a class="btn btn-blog pull-right marginBottom10" href="#!blogpostdetail/{{blogpost.blogpostId}}">READ MORE</a>
+
+					</ul>
+
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

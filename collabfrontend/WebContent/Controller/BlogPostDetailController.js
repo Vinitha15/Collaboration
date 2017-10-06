@@ -7,6 +7,7 @@ app.controller('BlogPostDetailController',function($scope,$location,BlogPostServ
 	BlogPostService.getblogpostbyid(id).then(function(response){
 		console.log(response.data)
 		$scope.blogpost=response.data
+		
 	},function(response){
 		console.log(response.status)
 		if(response.status==401)
@@ -28,4 +29,26 @@ app.controller('BlogPostDetailController',function($scope,$location,BlogPostServ
 	$scope.setRejectiontext=function(val){
 		$scope.showRejectiontext=val
 	}
+	
+	$scope.addcomment=function(){
+		$scope.BlogComment.blogpost=$scope.blogpost
+		BlogPostService.addcomment($scope.BlogComment).then(function(response){
+			$scope.BlogComment.commenttxt=''
+			console.log(response.data)
+			getallcomments()
+		},function(response){
+			console.log(response.data)
+		})
+	}
+	
+	function getallcomments(){
+		BlogPostService.getallcomments(id).then(function(response){
+			$scope.blogcomments=response.data
+			console.log(response.data)
+		},function(response){
+			console.log(response.data)
+		})
+	}
+	
+	getallcomments()
 })

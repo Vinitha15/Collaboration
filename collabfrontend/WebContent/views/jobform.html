@@ -1,44 +1,93 @@
 <style>
-form{
-margin-top:70px;
+.row1{
+margin-top:100px;
+}
+body{
+background: #2E3740;
+}
+.panel-primary > .panel-heading {
+    color: white;
+	 padding: 15px 15px;
+}
+
+.panel-primary {
+  border-color: black;
 }
 </style>
-<div class="container">
-			<form>
-			<div class="form-group">
-				<label>Enter Job Title:</label>
-				<input ng-model='job.jobtitle' placeholder='Title' type='text'>
+ <div class="container">
+		<div class="row1">
+			<div class="col-sm-6 col-md-4 col-md-offset-4">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<strong> <center>New Job</center></strong>
+					</div>
+					<div class="panel-body">
+						<form role="form">
+							<fieldset>
+					
+								<div class="row">
+									<div class="col-sm-12 col-md-10  col-md-offset-1 ">
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon" style="background-color: #880e4f">
+													<i class="glyphicon glyphicon-subtitles" style="color:white"></i>
+												</span> 
+												<input ng-model='job.jobtitle' placeholder='Title' type='text'class="form-control" type="text" autofocus>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group">
+											<span class="input-group-addon" style="background-color: #880e4f">
+													<i class="glyphicon glyphicon-book" style="color:white"></i>
+												</span>
+											<textarea rows="7" cols="20" ng-model='job.jobdescription' placeholder='Description' class="form-control"></textarea>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon" style="background-color: #880e4f">
+													<i class="glyphicon glyphicon-menu-right" style="color:white"></i>
+												</span> 
+												<input ng-model='job.skillsrequired' placeholder='Skills' type='text'class="form-control" type="text" autofocus>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon" style="background-color: #880e4f">
+													<i class="glyphicon glyphicon-map-marker" style="color:white"></i>
+												</span> 
+												<input ng-model='job.location' placeholder='Location' type='text'class="form-control" type="text" autofocus>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group">
+												<span class="input-group-addon" style="background-color: #880e4f">
+													<i class="glyphicon glyphicon-menu-right" style="color:white"></i>
+												</span> 
+												<input ng-model='job.salary' placeholder='Salary' type='text'class="form-control" type="text" autofocus>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group" style="background-color: #880e4f">
+												<span class="input-group-addon" style="background-color: #880e4f">
+													<i class="glyphicon glyphicon-menu-right" style="color:white"></i>
+												</span> 
+												<input ng-model='job.yearsofexp' placeholder='Years of Experience' type='text'class="form-control" type="text" autofocus>
+											</div>
+										</div>
+										<div class="form-group">
+											<input type="submit" class="btn btn-primary center-block" value="Add Job" ng-click="savejob()">
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+					
 			</div>
-			<div class="form-group">
-				<label>Enter Job Description:</label>
-				<input ng-model='job.jobdescription' placeholder='Description' type="textarea">
-			</div>
-			<div class="form-group">
-				<label>Skills Required:</label>
-				<input ng-model='job.skillsrequired' placeholder='Skills' type='text'>
-			</div>
-			<div class="form-group">
-				<label>Enter Location</label>
-				<input ng-model='job.location' placeholder='Location' type='text'>
-			</div>
-			<div class="form-group">
-				<label>Enter salary</label>
-				<input ng-model='job.salary' placeholder='Salary' type='text'>
-
-			</div>
-			<div class="form-group">
-				<label>Enter Company Name</label>
-				<input ng-model='job.companyname' placeholder='Company Name' type='text'>
-
-			</div>
-			<div class="form-group">
-				<label>Enter Years of Experience</label>
-				<input ng-model='job.yearsofexp' placeholder='Years of Experience' type='text'>
-
-			</div>
-			
-			<button type="submit" class="btn btn-success center-block" ng-click="savejob()">Submit</button>
-		</form>
+		</div>
 	</div>
+	
 
 
+</div>

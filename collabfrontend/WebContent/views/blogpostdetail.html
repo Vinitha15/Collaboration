@@ -12,17 +12,24 @@ margin-top:75px;
 
 <span><strong>CreatedBy</strong> {{blogpost.postedby.username}}</span>
 
-<span><strong>On:</strong> {{blogpost.postedOn}}</span>
+<span><strong>On:</strong> {{blogpost.postedOn | date:'medium'}}</span>
 
 </div>
 <div class="panel-body">
 <span><strong>Description: </strong> {{blogpost.blogdescription}}</span>
 </div>
 </div>
-
 </div>
-
+<div>
+<ul>
+<li style="list:none" ng-repeat="comment in blogcomments">
+{{comment.commenttxt}}<br>
+commented by: {{comment.commentedby.username}}
+commentedOn: {{comment.commentedOn | date:'medium'}}
+</li>
+</ul>
 </div>
-Add Comments
-<textarea rows="3" cols="10"></textarea>
+</div>
+<textarea rows="3" cols="10" ng-model="BlogComment.commenttxt"></textarea>
+<button class="btn btn-default" ng-click="addcomment()">comment</button>
 </div>

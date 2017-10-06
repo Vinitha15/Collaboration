@@ -1,0 +1,27 @@
+<style>
+.row{
+margin-top:75px;
+}
+</style>
+<div class=row>
+<div class="container">
+<table class="table table-stripped">
+<thead>
+<tr><th>First name</th>
+<th>Last name</th>
+<th>profile</th>
+</tr>
+</thead>
+<tbody>
+<tr ng-repeat="user in suggestedusers" >
+<td>{{user.firstname}}</td>
+<td>{{user.lastname}}</td>
+<td><img src="http://localhost:8086/collabbackend/getProfilepic/{{user.username}}" alt="upload Picture" height="25px" width="30px" class="img-circle"></td>
+<td>
+<a class="btn btn-default" ng-click="sendFriendRequest(user.username)">Send Friend Request</a>
+</td>						
+</tr>
+</tbody>
+</table>
+</div>
+</div>

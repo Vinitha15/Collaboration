@@ -3,6 +3,7 @@ package com.niit.dao;
 
 import java.util.List;
 
+import com.niit.model.BlogComment;
 import com.niit.model.BlogPost;
 
 public interface BlogPostdao {
@@ -12,4 +13,6 @@ public interface BlogPostdao {
 	BlogPost getblogpostbyid(int id);
 	void updateblogpost(BlogPost blogpost);
 	List<BlogPost> getapprovedblogposts(String username);
+	void saveblogcomment(BlogComment blogcomment);
+	List<BlogComment> getallcomments(int blogid);
 }
