@@ -89,7 +89,7 @@ border: none;
 }
 </style>
 </head>
-<body ng-app="myApp">
+<body ng-app="myApp" >
 	<div class="navbar-wrapper">
     <div class="container-fluid">
         <nav class="navbar navbar-fixed-top">
@@ -128,6 +128,9 @@ border: none;
 								<li><a href="#!getfriends">Friends({{noOfFriends}})</a></li>
                             </ul>
                         </li> 
+                        
+  					<li><a href="#!chat" ng-show="currentuser.username">chat </a></li>
+                        
                     </ul>
                     <ul class="nav navbar-nav pull-right">
                     	<li class=" dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" ng-show="currentuser.username"> <span class="glyphicon glyphicon-globe"><span class="rw-number-notification" ng-if="approvalstatus.length>0">{{approvalstatus.length}} </span> </span></a>
@@ -180,5 +183,11 @@ border: none;
 <script type="text/javascript" src="Controller/FriendController.js"></script>
 <script type="text/javascript" src="Service/FriendService.js"></script>
 
+<script  type="text/javascript" src="js/sockjs/sockjs.js"></script>
+<script type="text/javascript" src="js/stomp/dist/stomp.js"></script>
+
+
+<script type="text/javascript" src="Controller/ChatController.js"></script>
+<script type="text/javascript" src="Service/ChatService.js"></script>
 
 </html>
