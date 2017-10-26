@@ -18,15 +18,32 @@ app.factory('FriendService',function($http){
 		return $http.get(BASE_URL + "/pendingrequests")
 	}
 	friendService.updatePendingRequest=function(request){
-		return $http.put(BASE_URL + "/updatependingrequest",request)//request is Friend object with updated status(A/D).
+		return $http.put(BASE_URL + "/updatependingrequest",request)
 	}
-	friendService.getUserDetails=function(fromId){
-		return $http.get(BASE_URL + "/getuserdetails/"+fromId)
+	friendService.getUserDetails=function(id){
+		return $http.get(BASE_URL + "/getuserdetails/"+id)
 	}
 	
 	friendService.getFriends=function(){
 		return $http.get(BASE_URL + "/getfriends")
 	}
+	
+	friendService.getMutualFriends=function(suggestedUsers){
+		return $http.put(BASE_URL + "/getmutualfriends",suggestedUsers)
+	}
+	
+	friendService.getMutualFriendsbyfriends=function(friends){
+		return $http.put(BASE_URL + "/getmutualfriendsbyfriends",friends)
+	}
+	
+	friendService.getallmutualfriends=function(friend){
+		return $http.put(BASE_URL +"/getallmutualfriends/"+friend)
+	}
+	
+	friendService.getuserblogpost=function(friend){
+		return $http.get(BASE_URL +"/getBlogpostByuserid/"+friend)
+	}
+	
 
 	return friendService;
 })

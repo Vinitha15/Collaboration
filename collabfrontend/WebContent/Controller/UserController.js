@@ -1,7 +1,7 @@
 /**
  * 
  */
-app.controller('UserController',function($scope,$location,UserService,$rootScope,$cookieStore){
+app.controller('UserController',function($scope,$location,UserService,$rootScope,$cookieStore,JobService){
 	console.log("user Controller loading.......")
 	
 	if($rootScope.currentuser!=undefined){
@@ -11,7 +11,23 @@ app.controller('UserController',function($scope,$location,UserService,$rootScope
 			if(response.status==401)
 				$location.path('/login')
 		})	
+		UserService.getuserblogpost($rootScope.currentuser.username).then(function(response){
+		$scope.blogposts=response.data
+		},function(response){
+		if(response.status==401)
+			$location.path('/login')
+		})
+		
+		JobService.getappliedjobs().then(function(response){
+		$scope.appliedjobs=response.data
+		},function(response){
+		if(response.status==401)
+			$location.path('/login')
+		})
 	}
+	
+	
+	
 	
 	$scope.registerUser=function(){
 		console.log($scope.user)
@@ -57,5 +73,8 @@ app.controller('UserController',function($scope,$location,UserService,$rootScope
 			$location.path('/editprofile')
 		})
 	}
+	
+	
+		
 	
 })

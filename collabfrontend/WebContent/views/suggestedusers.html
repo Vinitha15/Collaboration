@@ -1,27 +1,87 @@
 <style>
 .row{
-margin-top:75px;
+margin-top: 90px;
+ 
 }
+body{
+     background: url(https://c1.staticflickr.com/4/3809/13674532284_7c0504a6e2_b.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.c-list {
+    padding: 0px;
+    min-height: 44px;
+}
+.title {
+    display: inline-block;
+    font-size: 1.7em;
+    font-weight: bold;
+    padding: 5px 15px;
+}
+ul.c-controls {
+    list-style: none;
+    margin: 0px;
+    min-height: 44px;
+}
+
+ul.c-controls li {
+    margin-top: 8px;
+    float: left;
+}
+
+ul.c-controls li a {
+    font-size: 1.7em;
+    padding: 11px 10px 6px;   
+}
+ul.c-controls li a i {
+    min-width: 24px;
+    text-align: center;
+}
+
+ul.c-controls li a:hover {
+    background-color: rgba(51, 51, 51, 0.2);
+}
+
+
+.name {
+    font-size: 1.7em;
+    font-weight: 700;
+}
+
+
 </style>
-<div class=row>
+<body>
 <div class="container">
-<table class="table table-stripped">
-<thead>
-<tr><th>First name</th>
-<th>Last name</th>
-<th>profile</th>
-</tr>
-</thead>
-<tbody>
-<tr ng-repeat="user in suggestedusers" >
-<td>{{user.firstname}}</td>
-<td>{{user.lastname}}</td>
-<td><img src="http://localhost:8086/collabbackend/getProfilepic/{{user.username}}" alt="upload Picture" height="25px" width="30px" class="img-circle"></td>
-<td>
-<a class="btn btn-default" ng-click="sendFriendRequest(user.username)">Send Friend Request</a>
-</td>						
-</tr>
-</tbody>
-</table>
+ <div class="row">
+        <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading c-list">
+                    <span class="title">Suggested Users</span>
+              </div>
+            <ul class="list-group" id="contact-list" ng-repeat="user in suggestedusers">
+                    <li class="list-group-item">
+                        <div class="col-xs-12 col-sm-3" >
+                           <a href="#!friendprofile/{{user.username}}"><img src="http://localhost:8086/collabbackend/getProfilepic/{{user.username}}"  class="img-responsive img-circle" /></a> 
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                            <a href="#!friendprofile/{{user.username}}"><span class="name">{{user.username}}</span></a>
+                              <br/>
+                           	<span ng-if="mutualFriends[user.username].length > 0">{{mutualFriends[user.username].length}} mutual friends</span>
+                           	<span ng-if="mutualFriends[user.username].length == 0">No mutual friends</span>
+                           	<a class="btn btn-success" ng-click="sendFriendRequest(user.username)" style="float: right;"><span class="glyphicon glyphicon-plus"></span> Add Friend</a>
+                    
+                           	  </div>
+                        <div class="clearfix"></div>
+                    </li>
+                                   </ul>
+            </div>
+        </div>
+	</div>
+ 
 </div>
-</div>
+
+</body>
+
+

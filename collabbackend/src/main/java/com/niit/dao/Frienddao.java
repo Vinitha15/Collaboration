@@ -14,4 +14,7 @@ public interface Frienddao {
 
 	void updatePendingRequest(Friend friend);
 	List<Friend> listOfFriends(String username);
+	
+	public List<String> getMutualFriends(String username, String otherUsername);
+
 }

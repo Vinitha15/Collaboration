@@ -1,24 +1,90 @@
+
 <style>
-table{
-margin-top:100px;
+.row{
+margin-top: 90px;
+ 
 }
+body{
+     background: url(data:image/jpeg;base64,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) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.c-list {
+    padding: 0px;
+    min-height: 44px;
+}
+.title {
+    display: inline-block;
+    font-size: 1.7em;
+    font-weight: bold;
+    padding: 5px 15px;
+}
+ul.c-controls {
+    list-style: none;
+    margin: 0px;
+    min-height: 44px;
+}
+
+ul.c-controls li {
+    margin-top: 8px;
+    float: left;
+}
+
+ul.c-controls li a {
+    font-size: 1.7em;
+    padding: 11px 10px 6px;   
+}
+ul.c-controls li a i {
+    min-width: 24px;
+    text-align: center;
+}
+
+ul.c-controls li a:hover {
+    background-color: rgba(51, 51, 51, 0.2);
+}
+
+
+.name {
+    font-size: 1.7em;
+    font-weight: 700;
+}
+
+
 </style>
-<table class="table table-striped">
-<tbody>
-<tr ng-repeat="friend in friends">
+<body>
+<div class="container">
+ <div class="row">
+        <div class="col-xs-12 col-sm-offset-3 col-sm-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading c-list">
+                    <span class="title">List of Friends</span>
+              </div>
+            <ul class="list-group" id="contact-list" ng-repeat="friend in friends">
+                    <li class="list-group-item">
+                        <div class="col-xs-12 col-sm-3" >
+                            <a href="#!friendprofile/{{friend.fromid}}" ng-if="currentuser.username!=friend.fromid"> <img src="http://localhost:8086/collabbackend/getProfilepic/{{friend.fromid}}"  class="img-responsive img-circle" /></a>
+ 							<a href="#!friendprofile/{{friend.toid}}" ng-if="currentuser.username!=friend.toid"> <img src="http://localhost:8086/collabbackend/getProfilepic/{{friend.toid}}"  class="img-responsive img-circle" /></a>
+                                         
+                        </div>
+                        <div class="col-xs-12 col-sm-9">
+                          <a href="#!friendprofile/{{friend.fromid}}"><span class="name" ng-if="currentuser.username!=friend.fromid">{{friend.fromid}} </span></a><br/>
+                           	<a href="#!friendprofile/{{friend.toid}}" > <span class="name" ng-if="currentuser.username!=friend.toid">{{friend.toid}} </span></a><br/>
+                           	<span ng-if="currentuser.username!=friend.fromid && mutualFriends[friend.fromid].length>0">{{mutualFriends[friend.fromid].length}} mutual friends</span>
+                           	<span ng-if="currentuser.username!=friend.fromid && mutualFriends[friend.fromid].length==0">No mutual friends</span>
+                             <span ng-if="currentuser.username!=friend.toid && mutualFriends[friend.toid].length>0">{{mutualFriends[friend.toid].length}} mutual friends</span>
+                           	<span ng-if="currentuser.username!=friend.toid && mutualFriends[friend.toid].length==0">No mutual friends</span>
+                             </div>
+                        <div class="clearfix"></div>
+                    </li>
+                  </ul>
+            </div>
+        </div>
+	</div>
+ 
+</div>
 
-<td ng-if="currentuser.username!=friend.fromid">{{friend.fromid}}</td>
+</body>
 
-<td ng-if="currentuser.username!=friend.toid">{{friend.toid}}</td>
 
-<td ng-if="currentuser.username!=friend.fromid">
-<img src="http://localhost:8086/collabbackend/getProfilepic/{{friend.fromid}}" height="40px" width="40px" ></td>
-
-<td ng-if="currentuser.username!=friend.toid">
-<img src="http://localhost:8086/collabbackend/getProfilepic/{{friend.toid}} " height="40px" width="40px">
-</td>
-</tr>
-
-</tbody>
-
-</table>

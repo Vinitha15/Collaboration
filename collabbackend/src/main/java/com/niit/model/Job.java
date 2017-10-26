@@ -1,11 +1,14 @@
 package com.niit.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
 @Table(name="job_details")
@@ -21,7 +24,8 @@ public class Job {
 	private String companyname; 
 	private String yearsofexp;
 	private Date postedOn;
-	
+	@OneToMany(mappedBy="jobs",fetch=FetchType.EAGER)
+	private List<AppliedJob> appliedjobs; 
 	
 	public int getJobId() {
 		return jobId;
@@ -77,6 +81,7 @@ public class Job {
 	public void setPostedOn(Date postedOn) {
 		this.postedOn = postedOn;
 	}
+	
 	
 	
 

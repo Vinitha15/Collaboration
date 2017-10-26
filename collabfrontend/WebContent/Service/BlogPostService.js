@@ -37,6 +37,9 @@ app.factory('BlogPostService',function($http){
 			console.log(blogpostid)
 			return	$http.get(BASE_URL + "/getAllBlogcomment/"+blogpostid)
 			}
+		blogPostService.updateviewedStatus=function(approvalstatus){
+			return	$http.put(BASE_URL + "/updateviewedstatus",approvalstatus)
+			}
 
 		
 	return blogPostService;

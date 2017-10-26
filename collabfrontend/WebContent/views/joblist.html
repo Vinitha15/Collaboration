@@ -1,31 +1,150 @@
 <style>
-input[type="text"]{
-margin-top:75px;
+body{
+background: #2E3740;
+}
+#custom-search-input {
+        margin:0;
+        margin-top: 75px;
+        padding: 0;
+         margin-bottom: 25px;
+    }
+ 
+    #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    #custom-search-input button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color:#D9230F;
+    }
+
+
+.card {
+   color: white;
+	background:#66CDAA;
+   	font-size: 1em;
+    overflow: hidden;
+    padding: 0;
+    border: none;
+    border-radius: .28571429rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+}
+
+.card-block {
+    font-size: 1em;
+    position: relative;
+    margin: 0;
+    padding: 1em;
+    border: none;
+    border-top: 1px solid rgba(34, 36, 38, .1);
+    box-shadow: none;
+}
+
+
+.card-title {
+    font-size: 1.28571429em;
+    font-weight: 700;
+    line-height: 1.2857em;
+}
+
+.card-text {
+    clear: both;
+    margin-top: .5em;
+}
+
+.card-header {
+    font-size: 1em;
+    position: static;
+    top: 0;
+    left: 0;
+    max-width: 100%;
+    padding: .75em 1em;
+    color: white;
+    border-top: 1px solid rgba(0, 0, 0, .05) !important;
+    background: #8FBC8F;
+    text-align: center;
+}
+
+.meta {
+    font-size: 1em;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta p {
+    text-decoration: none;
+    color: rgba(0, 0, 0, .4);
+}
+
+.meta p:hover {
+    color: rgba(0, 0, 0, .87);
 }
 
 </style>
 <div class="container">
-Search <input type="text" ng-model="searchTxt">
-<table class="table table-stripped">
-<thead>
-<tr><th>jobtitle</th>
-<th>PostedOn</th></tr>
-</thead>
-<tbody>
-<tr ng-repeat="job in jobs | filter:searchTxt" >
-<td><a href="" ng-click="getjobbyid(job.jobId)">{{job.jobtitle}}</a></td>
-<td>{{job.postedOn | date:'yyyy:MM:dd'}}</td>
-</tr>
-</tbody>
-</table>
-<div ng-show="showjobdetails">
-JOB Title:			{{job.jobtitle}}<br/>
-JOB Description:	{{job.jobdescription}}<br/>
-Years Of Experience:{{job.yearsofexp}}<br/>
-Company Name:		{{job.companyname}}<br/>
-Skills Required:	{{job.skillsrequired}}<br/>
-Location:			{{job.location}}<br/>
-Posted On:			{{job.postedOn}}<br/>
-Salary:				{{job.salary}}
+        <div class="row">
+         <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" class="search-query form-control" placeholder="Search" ng-model="searchTxt" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="button">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                </span>
+                            </div>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3 mt-4" ng-repeat="job in jobs | filter:searchTxt" >
+                <div class="card">
+                    <div class="card-header">
+                        <span class="float-right">{{job.jobtitle}}</span>
+                    </div>
+                    <div class="card-block">
+                       <div class="card-text">
+                            <p><b style="color: #880e4f;">Description: </b> {{job.jobdescription}}</p> 
+      <p><b style="color: #880e4f;  ">Company Name: </b> {{job.companyname}}</p> 
+     <p><b style="color: #880e4f;  ">Skills Required: </b>{{job.skillsrequired}}</p> 
+      <p><b style="color: #880e4f;  ">Years Of Experience: </b>{{job.yearsofexp}}</p> 
+       <p><b style="color: #880e4f;  ">Location: </b> {{job.location}}</p> 
+         <p><b style="color: #880e4f;  ">Salary: </b> {{job.salary}}</p>
+                        </div>
+                        <div class="meta">
+                         
+                      <span ng-show="applied[job.jobtitle]" >
+                   <p style="text-align: center;"> <a class="btn btn-warning">Applied <span class="glyphicon glyphicon-saved" ></span></a>
+						</p>
+                      </span>
+                      <span ng-hide="applied[job.jobtitle]" style="text-align: center;">
+                    <p style="text-align: center;"> <a ng-click="applyjob(job)"  class="btn btn-primary"><span class="glyphicon glyphicon-plus" ></span> Apply </a>
+						</p>
+                      </span>
+                           	
+				
+				   <p style="text-align: right;">{{job.postedOn | date:'dd/MM/yyyy'}}</p> 
+            
+				 </div>
+			        </div>
+                </div>
+            </div>
+        </div>
 </div>
-</div>
+
+

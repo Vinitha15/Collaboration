@@ -18,5 +18,22 @@ app.factory('JobService',function($http){
 	return	$http.get(BASE_URL + "/getjobByid/"+id)
 	}
 	
+	jobService.saveappliedjob=function(job){
+	return	$http.post(BASE_URL + "/applyJob",job)
+	}
+	
+	jobService.getappliedjobs=function(){
+		return	$http.get(BASE_URL + "/getappliedJobs")
+		}
+	
+	jobService.getallappliedjobs=function(){
+		return	$http.get(BASE_URL + "/getAllappliedjobs")
+		}
+	
+	jobService.isapplied=function(jobs){
+		return	$http.put(BASE_URL + "/isapplied",jobs)
+		}
+		
+	
 	return jobService;
 })

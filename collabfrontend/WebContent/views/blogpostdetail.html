@@ -12,7 +12,7 @@ margin-top:75px;
 
 <span><strong>CreatedBy</strong> {{blogpost.postedby.username}}</span>
 
-<span><strong>On:</strong> {{blogpost.postedOn | date:'medium'}}</span>
+<span><strong>On:</strong> {{blogpost.postedOn | date:'short'}}</span>
 
 </div>
 <div class="panel-body">
@@ -22,10 +22,10 @@ margin-top:75px;
 </div>
 <div>
 <ul>
-<li style="list:none" ng-repeat="comment in blogcomments">
+<li style="list:none" ng-repeat="comment in blogcomments | orderBy: '-commentedOn'">
 {{comment.commenttxt}}<br>
 commented by: {{comment.commentedby.username}}
-commentedOn: {{comment.commentedOn | date:'medium'}}
+commentedOn: {{comment.commentedOn | date:'short'}}
 </li>
 </ul>
 </div>

@@ -1,7 +1,9 @@
 package com.niit.controller;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -94,6 +96,57 @@ public class FriendController {
     	}
     	List<Friend> friends=frienddao.listOfFriends(username);
     	return new ResponseEntity<List<Friend>>(friends,HttpStatus.OK);
+    }
+    
+    @RequestMapping(value="/getmutualfriends",method=RequestMethod.PUT)
+    //input is List<User> -> suggestedUsers
+    public ResponseEntity<?> getMutualFriends(@RequestBody List<User> suggestedUsers,HttpSession session){
+    	String username=(String)session.getAttribute("username");
+    	if(username==null){
+    		Error error=new Error(5,"UnAuthorized Access..");
+    		return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+    	}
+    	Map<String, List<String>> mutualFriends=new HashMap<String, List<String>>();
+    	for(User u :suggestedUsers){
+    	mutualFriends.put(u.getUsername(), frienddao.getMutualFriends(username,u.getUsername()));
+    	System.out.println(mutualFriends.size());
+    	}
+    	System.out.println(mutualFriends);
+    	return new ResponseEntity<Map<String,List<String>>>(mutualFriends,HttpStatus.OK);
+    }
+    
+    @RequestMapping(value="/getmutualfriendsbyfriends",method=RequestMethod.PUT)
+    public ResponseEntity<?> getMutualFriendsbyfriends(@RequestBody List<Friend> friends,HttpSession session){
+    	String username=(String)session.getAttribute("username");
+    	if(username==null){
+    		Error error=new Error(5,"UnAuthorized Access..");
+    		return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+    	}
+    	Map<String, List<String>> mutualFriends=new HashMap<String, List<String>>();
+    	for(Friend f :friends){
+    	mutualFriends.put(f.getFromid(), frienddao.getMutualFriends(username,f.getFromid()));
+    	mutualFriends.put(f.getToid(), frienddao.getMutualFriends(username,f.getToid()));
+    	System.out.println(mutualFriends.size());
+    	}
+    	System.out.println(mutualFriends);
+    	return new ResponseEntity<Map<String,List<String>>>(mutualFriends,HttpStatus.OK);
+    }
+    
+   
+	@RequestMapping(value="/getallmutualfriends/{friend}",method=RequestMethod.PUT)
+    public ResponseEntity<?> getallMutualFriend(@PathVariable String friend,HttpSession session){
+    	List<User> users=new ArrayList<User>();
+    	String username=(String)session.getAttribute("username");
+    	if(username==null){
+    		Error error=new Error(5,"UnAuthorized Access..");
+    		return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+    	}
+    	List<String> mutualFriends=frienddao.getMutualFriends(username,friend);
+    	for(String user:mutualFriends){
+    		User user1=userdao.getUserbyUsername(user);
+    		users.add(user1);
+    		}
+    	return new ResponseEntity<List<User>>(users,HttpStatus.OK);
     }
 
 }

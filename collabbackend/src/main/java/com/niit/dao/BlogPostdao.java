@@ -15,4 +15,6 @@ public interface BlogPostdao {
 	List<BlogPost> getapprovedblogposts(String username);
 	void saveblogcomment(BlogComment blogcomment);
 	List<BlogComment> getallcomments(int blogid);
+	List<BlogPost> getablogpostsbyuserid(String username);
+	
 }

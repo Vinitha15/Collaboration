@@ -3,7 +3,9 @@ package com.niit.controller;
 
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.niit.dao.Jobdao;
 import com.niit.dao.Userdao;
+import com.niit.model.AppliedJob;
 import com.niit.model.Error;
 import com.niit.model.Job;
 import com.niit.model.User;
@@ -29,6 +32,7 @@ public class JobController {
 	
 	@Autowired
 	private Jobdao jobdao;
+	
 	
 	@RequestMapping(value="/saveJob", method=RequestMethod.POST)
 	public ResponseEntity<?> savejob(@RequestBody Job job,HttpSession session){
@@ -79,6 +83,59 @@ public class JobController {
 		return new ResponseEntity<Job>(job,HttpStatus.OK);
 		
 	}
-
+	
+	@RequestMapping(value="/applyJob", method=RequestMethod.POST)
+	public ResponseEntity<?> applyjob(@RequestBody Job job,HttpSession session){
+		
+		if( session.getAttribute("username")==null){
+			Error error=new Error(5,"Unauthorized access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		String username=(String) session.getAttribute("username");
+		User user=userdao.getUserbyUsername(username);
+		AppliedJob applyingjob= new AppliedJob();
+		applyingjob.setUsers(user);
+		applyingjob.setJobs(job);
+		jobdao.applyJob(applyingjob);
+		return new ResponseEntity<AppliedJob>(applyingjob,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/getAllappliedjobs", method=RequestMethod.GET)
+	public ResponseEntity<?> getallappliedjobs(HttpSession session){
+		if(session.getAttribute("username")==null){
+			Error error=new Error(5,"Unauthorized access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		List<AppliedJob> AppliedJobs=jobdao.getappliedjobs();
+		return new ResponseEntity<List<AppliedJob>>(AppliedJobs,HttpStatus.OK);
+		
+	}
+	
+	@RequestMapping(value="/getappliedJobs", method=RequestMethod.GET)
+	public ResponseEntity<?> applyjob(HttpSession session){
+		
+		if( session.getAttribute("username")==null){
+			Error error=new Error(5,"Unauthorized access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		String username=(String) session.getAttribute("username");
+		List<AppliedJob> appliedjobs= jobdao.getappliedjobsbyuser(username);
+		return new ResponseEntity<List<AppliedJob>>(appliedjobs,HttpStatus.OK);
+	}
+	 @RequestMapping(value="/isapplied",method=RequestMethod.PUT)
+	    public ResponseEntity<?> getMutualFriends(@RequestBody List<Job> jobs,HttpSession session){
+	    	String username=(String)session.getAttribute("username");
+	    	if(username==null){
+	    		Error error=new Error(5,"UnAuthorized Access..");
+	    		return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+	    	}
+	    	Map<String, Boolean> isapplied=new HashMap<String, Boolean>();
+	    	for(Job j :jobs){
+	    		isapplied.put(j.getJobtitle(), jobdao.isjobapplied(username, j.getJobId()));
+	    	System.out.println(isapplied.size());
+	    	}
+	    	System.out.println(isapplied);
+	    	return new ResponseEntity<Map<String,Boolean>>(isapplied,HttpStatus.OK);
+	    }
 	
 }

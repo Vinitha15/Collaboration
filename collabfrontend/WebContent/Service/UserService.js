@@ -22,6 +22,9 @@ app.factory('UserService',function($http){
 	userService.updateUser=function(user){
 		return	$http.put(BASE_URL + "/updateprofile",user)
 		}
-		
+	userService.getuserblogpost=function(username){
+		return $http.get(BASE_URL +"/getBlogpostByuserid/"+username)
+	}
+	
 	return userService;
 })

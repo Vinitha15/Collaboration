@@ -16,6 +16,10 @@ app.config(function($routeProvider) {
         templateUrl : 'views/login.html',
         controller:'UserController'
     })
+    .when("/profile", {
+        templateUrl : 'views/profile.html',
+        controller:'UserController'
+    })
     .when("/editprofile", {
         templateUrl : 'views/editprofile.html',
         controller:'UserController'
@@ -63,6 +67,10 @@ app.config(function($routeProvider) {
 		templateUrl:'views/listoffriends.html',
 		controller:'FriendController'
 	})
+	.when("/friendprofile/:id", {
+        templateUrl : 'views/profile.html',
+        controller:'FriendController'
+    })
 	.when('/chat',{
 		templateUrl:'views/chat.html',
 		controller:'ChatController'
