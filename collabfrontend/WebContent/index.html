@@ -9,6 +9,24 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
  <style>
+#footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 220px;
+  background: 
+  /* color overlay */ 
+    linear-gradient(
+      rgba(237, 12, 56, 0.45), 
+      rgba(0, 0, 0, 0.45)
+    ),
+    /* image to overlay */
+    url(http://images.cdn.fotopedia.com/_avPIZmqM3w-7z161LH_268-hd.jpg);
+}
+.footertext {
+  color: #ffffff;
+}
 
 .navbar, .dropdown-menu{
 background:#880e4f;
@@ -29,31 +47,41 @@ border: none;
 .dropdown-menu{
       -webkit-box-shadow: none;
     box-shadow:none;
+    background:#880e4f;
+    
 }
 
 .nav li:hover:nth-child(8n+1), .nav li.active:nth-child(8n+1){
-  border-bottom: #b6f423 4px solid;
+  border-bottom: #b6f423 4px solid;background:#880e4f;
+  
 }
 .nav li:hover:nth-child(8n+2), .nav li.active:nth-child(8n+2){
-  border-bottom: #82e2ea 4px solid;
+  border-bottom: #82e2ea 4px solid;background:#880e4f;
+  
 }
 .nav li:hover:nth-child(8n+3), .nav li.active:nth-child(8n+3){
-  border-bottom: #f8b42c 4px solid;
+  border-bottom: #f8b42c 4px solid;background:#880e4f;
+  
 }
 .nav li:hover:nth-child(8n+4), .nav li.active:nth-child(8n+4){
-  border-bottom: #fd594a 4px solid;
+  border-bottom: #fd594a 4px solid;background:#880e4f;
+  
 }
 .nav li:hover:nth-child(8n+5), .nav li.active:nth-child(8n+5){
-  border-bottom: #e8479d 4px solid;
+  border-bottom: #e8479d 4px solid;background:#880e4f;
+  
 }
 .nav li:hover:nth-child(8n+6), .nav li.active:nth-child(8n+6){
-  border-bottom: #a12eeb 4px solid;
+  border-bottom: #a12eeb 4px solid;background:#880e4f;
+  
 }
 .nav li:hover:nth-child(8n+7), .nav li.active:nth-child(8n+7){
-  border-bottom: #4785d9 4px solid;
+  border-bottom: #4785d9 4px solid;background:#880e4f;
+  
 }
 .nav li:hover:nth-child(8n+8), .nav li.active:nth-child(8n+8){
-  border-bottom: #2aed9a 4px solid;
+  border-bottom: #2aed9a 4px solid;background:#880e4f;
+  
 }
 
 .navbar-toggle .icon-bar{
@@ -87,12 +115,23 @@ border: none;
     border-radius: 4px;
     box-shadow: 1px 1px 1px silver;
 }
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: red;
+   color: white;
+   text-align: center;
+}
+
 </style>
 </head>
 <body ng-app="myApp" >
 	<div class="navbar-wrapper">
-    <div class="container-fluid">
-        <nav class="navbar navbar-fixed-top">
+    <div class="container-fluid " style="padding: 0px ;">
+        <nav class="navbar navbar-fixed-top" style="margin-bottom: 0;border-radius: 0;">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -170,6 +209,7 @@ border: none;
     </div>
 </div>
 	<div ng-view></div>
+	
 </body>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
@@ -202,5 +242,38 @@ border: none;
 
 <script type="text/javascript" src="Controller/ChatController.js"></script>
 <script type="text/javascript" src="Service/ChatService.js"></script>
-
+<div id="footer">
+    <div class="container">
+        <div class="row1">
+            <br>
+              <div class="col-md-4">
+                <center>
+                  <img src="http://oi60.tinypic.com/w8lycl.jpg" class="img-circle" alt="the-brains">
+                  <br>
+                  <h4 class="footertext">Blogs</h4>
+                  <p class="footertext">You can post the blogs in this website..<br>
+                </center>
+              </div>
+              <div class="col-md-4">
+                <center>
+                  <img src="http://oi60.tinypic.com/2z7enpc.jpg" class="img-circle" alt="...">
+                  <br>
+                  <h4 class="footertext">Jobs</h4>
+                  <p class="footertext">You can apply jobs here and can see the status..<br>
+                </center>
+              </div>
+              <div class="col-md-4">
+                <center>
+                  <img src="http://oi61.tinypic.com/307n6ux.jpg" class="img-circle" alt="...">
+                  <br>
+                  <h4 class="footertext">Forum</h4>
+                  <p class="footertext">You can join any number of forums..<br>
+                </center>
+              </div>
+            </div>
+            <div class="row1">
+            <p><center><a href="#!login">Login Here</a> <p class="footertext">Copyright 2017</p></center></p>
+        </div>
+    </div>
+</div>
 </html>

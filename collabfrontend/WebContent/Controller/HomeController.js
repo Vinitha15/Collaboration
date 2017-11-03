@@ -52,7 +52,7 @@ app.controller("HomeController",function($scope,$rootScope,BlogPostService,Frien
 		console.log('after assigning value to status  ' + request)
 		FriendService.updatePendingRequest(request).then(function(response){
 			pendingRequests();
-			$location.path('/pendingrequests')
+			$location.path('/home')
 		},function(response){
 			if(response.status==401)
 				$location.path('/login')

@@ -1,6 +1,7 @@
 package com.niit.controller;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -98,6 +99,20 @@ public class BlogPostController {
 		return new ResponseEntity<List<BlogPost>>(blogposts,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/updateviewedstatus" , method=RequestMethod.PUT)
+	public ResponseEntity<?> updateviewedstatus(@RequestBody List<BlogPost> blogposts,HttpSession session){
+		if( session.getAttribute("username")==null){
+			Error error=new Error(5,"Unauthorized access");
+			return new ResponseEntity<Error>(error,HttpStatus.UNAUTHORIZED);
+		}
+		
+			for (BlogPost blog:blogposts) {
+					blog.setViewedStatus(true);
+					blogpostdao.updateblogpost(blog);
+			}
+			return new ResponseEntity<List<BlogPost>>(blogposts,HttpStatus.OK);
+		
+	}
 	@RequestMapping(value="/getBlogpostByuserid/{id}" , method=RequestMethod.GET)
 	public ResponseEntity<?> getblogpostbyuserid(@PathVariable String id,HttpSession session){
 		if( session.getAttribute("username")==null){
